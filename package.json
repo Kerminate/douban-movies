@@ -6,13 +6,25 @@
   "dependencies": {
     "ejs": "^2.6.1",
     "koa": "^2.6.2",
+    "koa-static": "^5.0.0",
     "koa-views": "^6.1.4",
     "nodemon": "^1.18.7",
-    "pug": "^2.0.3"
+    "parcel": "^1.10.3",
+    "pug": "^2.0.3",
+    "react": "^16.6.3",
+    "react-dom": "^16.6.3"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "@babel/core": "^7.2.0",
+    "@babel/plugin-proposal-class-properties": "^7.2.1",
+    "@babel/plugin-proposal-decorators": "^7.2.0",
+    "@babel/plugin-transform-runtime": "^7.2.0",
+    "@babel/preset-env": "^7.2.0",
+    "@babel/preset-react": "^7.0.0"
+  },
   "scripts": {
     "start": "nodemon server/index.js",
+    "build": "rm -rf parcel/dist && parcel build parcel/index.html --no-cache -d parcel/dist --public-url /dist/",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
