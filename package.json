@@ -11,8 +11,11 @@
     "nodemon": "^1.18.7",
     "parcel": "^1.10.3",
     "pug": "^2.0.3",
+    "puppeteer": "^1.11.0",
     "react": "^16.6.3",
-    "react-dom": "^16.6.3"
+    "react-dom": "^16.6.3",
+    "request": "^2.88.0",
+    "request-promise-native": "^1.0.5"
   },
   "devDependencies": {
     "@babel/core": "^7.2.0",
