@@ -2,6 +2,8 @@ const path = require('path')
 const fs = require('fs-extra')
 const request = require('request')
 const rp = require('request-promise-native')
+const axios = require('axios')
+const FormData = require('form-data')
 
 const downResources = (url, imgPath) => {
   return new Promise((resolve, reject) => {
@@ -25,22 +27,33 @@ const downResources = (url, imgPath) => {
     console.log(buffer)
     console.log(Buffer.isBuffer(buffer))
     console.log(imgPath)
-    const options = {
-      method: 'POST',
-      uri: 'https://sm.ms/api/upload',
-      headers: {
-        contentType: 'multipart/form-data',
-      },
-      formData: {
-        smfile: {
-          value: Buffer.from(base64Image, 'base64'),
-          options: {
-            filename: fileName
-          }
-        }
-      }
-    }
-    let body = await rp(options)
+    // const options = {
+    //   method: 'POST',
+    //   uri: 'https://sm.ms/api/upload',
+    //   headers: {
+    //     contentType: 'multipart/form-data',
+    //   },
+    //   formData: {
+    //     smfile: {
+    //       value: Buffer.from(base64Image, 'base64'),
+    //       options: {
+    //         filename: fileName
+    //       }
+    //     }
+    //   }
+    // }
+    // let body = await rp(options)
+
+    const form = new FormData()
+    form.append('smfile', Buffer.from(base64Image, 'base64'), {
+      filename: fileName
+    })
+    const body = await axios
+      .create({
+        headers: form.getHeaders()
+      })
+      .post('https://sm.ms/api/upload', form)
+    console.log(body.data)
   } catch (err) {
     console.log(err)
   }
