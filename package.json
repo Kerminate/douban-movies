@@ -5,6 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "axios": "^0.18.0",
+    "bcrypt": "^3.0.2",
     "ejs": "^2.6.1",
     "form-data": "^2.3.3",
     "fs-extra": "^7.0.1",
