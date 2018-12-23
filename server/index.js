@@ -13,10 +13,12 @@ const app = new Koa()
   // 初始化数据表
   initSchemas()
 
-  const Movie = mongoose.model('Movie')
-  const movies = await Movie.find({})
+  // const Movie = mongoose.model('Movie')
+  // const movies = await Movie.find({})
 
-  console.log(movies)
+  // require('./tasks/movie')
+  require('./tasks/api')
+  // require('./tasks/tralier')
 })()
 
 app.use(views(path.resolve(__dirname, './views'), {
