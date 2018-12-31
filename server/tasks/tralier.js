@@ -32,7 +32,7 @@ const Category = mongoose.model('Category')
   child.on('message', async (data) => {
     console.log(data)
     const doubanId = data.doubanId
-    const movie = await movie.findOne({
+    const movie = await Movie.findOne({
       doubanId: doubanId
     }).exec()
 
@@ -50,7 +50,7 @@ const Category = mongoose.model('Category')
           name: type
         })
 
-        if (cat) {
+        if (cat && cat.movies) {
           const idx = cat.movies.indexOf(movie._id)
           if (idx > - 1) {
             cat.movies = cat.movies.splice(idx, 1)
@@ -64,6 +64,6 @@ const Category = mongoose.model('Category')
 
   console.log(movies)
 
-  child.send([movies[0]])
+  child.send(movies)
 
 })()

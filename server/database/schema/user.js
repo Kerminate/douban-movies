@@ -56,6 +56,7 @@ userSchema.pre('save', function (next) {
 })
 
 userSchema.pre('save', function (next) {
+  const user = this
   if (!user.isModified('password')) return next()
 
   bcrypt.genSalt(SALT_WORK_FACTOR, (err, salt) => {
@@ -68,8 +69,6 @@ userSchema.pre('save', function (next) {
       next()
     })
   })
-
-  next()
 })
 
 // 实例方法

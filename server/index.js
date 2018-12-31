@@ -2,7 +2,7 @@ const Koa = require('koa')
 const views = require('koa-views')
 const path = require('path')
 const mongoose = require('mongoose')
-const { connect, initSchemas } = require('./database/init')
+const { connect, initSchemas, initAdmin } = require('./database/init')
 
 const app = new Koa()
 
@@ -13,12 +13,12 @@ const app = new Koa()
   // 初始化数据表
   initSchemas()
 
-  // const Movie = mongoose.model('Movie')
-  // const movies = await Movie.find({})
+  await initAdmin()
 
   // require('./tasks/movie')
-  require('./tasks/api')
+  // require('./tasks/api')
   // require('./tasks/tralier')
+  // require('./tasks/qiniu')
 })()
 
 app.use(views(path.resolve(__dirname, './views'), {
