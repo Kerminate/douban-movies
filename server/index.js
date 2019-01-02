@@ -22,10 +22,6 @@ const router = require('./routes')
 
 const app = new Koa()
 
-app
-  .use(router.routes())
-  .use(router.allowedMethods())
-
 app.use(views(path.resolve(__dirname, './views'), {
   extension: 'pug'
 }))
