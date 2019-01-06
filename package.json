@@ -36,11 +36,14 @@
     "@babel/polyfill": "^7.2.5",
     "@babel/preset-env": "^7.2.0",
     "@babel/preset-react": "^7.0.0",
-    "@babel/register": "^7.0.0"
+    "@babel/register": "^7.0.0",
+    "autoprefixer": "^9.4.4",
+    "cssnext": "^1.8.4",
+    "node-sass": "^4.11.0"
   },
   "scripts": {
     "start": "nodemon server/index.js",
-    "build": "rm -rf parcel/dist && parcel build parcel/index.html --no-cache -d parcel/dist --public-url /dist/",
+    "build": "rm -rf dist && parcel build src/index.html --no-cache -d dist --public-url /",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
