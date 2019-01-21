@@ -30,7 +30,7 @@ export default class Home extends Component {
   _getAllMovies = () => {
     request(window.__LOADING__)({
       method: 'get',
-      url: `/movies?type=${this.state.type || ''}$year=${this.state.year || ''}`
+      url: `/api/v0/movies?type=${this.state.type || ''}&year=${this.state.year || ''}`
     }).then(res => {
       this.setState({
         movies: res
@@ -70,7 +70,9 @@ export default class Home extends Component {
               ))
             }
           </Menu>
-          <div className="flex-1 scroll-y align-self-start"></div>
+          <div className="flex-1 scroll-y align-self-start">
+            {this._renderContent()}
+          </div>
         </div>
       </Layout>
     )

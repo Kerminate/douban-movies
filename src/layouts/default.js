@@ -12,7 +12,7 @@ const getMenuContent = ({ path, name }) => (
 )
 
 export default class LayoutDefault extends Component {
-  constructor () {
+  constructor (props) {
     super(props)
     this.state = {
       loading: false,
