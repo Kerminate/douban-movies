@@ -2,8 +2,6 @@ const qiniu = require('qiniu')
 const nanoid = require('nanoid')
 const config = require('../config')
 const mongoose = require('mongoose')
-const Movie = mongoose.model('Movie')
-const Category = mongoose.model('Category')
 
 const bucket = config.qiniu.bucket
 const mac = new qiniu.auth.digest.Mac(config.qiniu.AK, config.qiniu.SK)
@@ -26,7 +24,9 @@ const uploadToQiniu = async (url, key) => {
   })
 }
 
-;(async () => {
+const qiniuTask = async () => {
+  const Movie = mongoose.model('Movie')
+
   let movies = await Movie.find({
     $or: [
       { videoKey: { $exists: false } },
@@ -64,4 +64,6 @@ const uploadToQiniu = async (url, key) => {
       }
     }
   }
-})()
+}
+
+module.exports = qiniuTask

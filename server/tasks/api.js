@@ -2,8 +2,6 @@
 
 const rp = require('request-promise-native')
 const mongoose = require('mongoose')
-const Movie = mongoose.model('Movie')
-const Category = mongoose.model('Category')
 
 const fetchMovie = async (item) => {
   const url = `http://api.douban.com/v2/movie/${item.doubanId}`
@@ -18,7 +16,10 @@ const fetchMovie = async (item) => {
   return body
 }
 
-;(async () => {
+const apiTask = async () => {
+  const Movie = mongoose.model('Movie')
+  const Category = mongoose.model('Category')
+
   let movies = await Movie.find({
     $or: [
       { summary: { $exists: false } },
@@ -102,4 +103,6 @@ const fetchMovie = async (item) => {
     }
   }
 
-})()
+}
+
+module.exports = apiTask

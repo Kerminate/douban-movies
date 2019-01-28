@@ -1,9 +1,9 @@
 const cp = require('child_process')
 const path = require('path')
 const mongoose = require('mongoose')
-const Movie = mongoose.model('Movie')
 
-;(async () => {
+const movieTask = async () => {
+  const Movie = mongoose.model('Movie')
   const script = path.resolve(__dirname, '../crawler/trailer-list.js')
   const child = cp.fork(script, [])
   let invoked = false
@@ -35,4 +35,6 @@ const Movie = mongoose.model('Movie')
     })
   })
 
-})()
+}
+
+module.exports = movieTask

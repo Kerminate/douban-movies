@@ -1,10 +1,11 @@
 const cp = require('child_process')
 const path = require('path')
 const mongoose = require('mongoose')
-const Movie = mongoose.model('Movie')
-const Category = mongoose.model('Category')
 
-;(async () => {
+const tralierTask = async () => {
+  const Movie = mongoose.model('Movie')
+  const Category = mongoose.model('Category')
+
   let movies = await Movie.find({
     $or: [
       { video: { $exists: false } },
@@ -66,4 +67,6 @@ const Category = mongoose.model('Category')
 
   child.send(movies)
 
-})()
+}
+
+module.exports = tralierTask

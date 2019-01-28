@@ -5,7 +5,7 @@ const mongoose = require('mongoose')
 const R = require('ramda')
 const { connect, initSchemas, initAdmin } = require('./database/init')
 
-const MIDDLEWARES = ['router', 'parcel']
+const MIDDLEWARES = ['common', 'router', 'parcel']
 
 // 加载中间件
 const useMiddlewares = (app) => {
@@ -29,6 +29,7 @@ const useMiddlewares = (app) => {
 
   await initAdmin()
 
+  // require('./tasks/clear')
   // require('./tasks/movie')
   // require('./tasks/api')
   // require('./tasks/tralier')
