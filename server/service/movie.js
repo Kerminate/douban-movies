@@ -1,6 +1,13 @@
 const mongoose = require('mongoose')
 const Movie = mongoose.model('Movie')
 
+export const findAndRemove = async (id) => {
+  const movie = await Movie.findOne({_id: id})
+  if (movie) {
+    await movie.remove()
+  }
+}
+
 export const getAllMovies = async (type, year) => {
   const query = {}
   if (type) {
